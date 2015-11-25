@@ -6,12 +6,13 @@ ACCESS_FILE_NAME="aws-credentials"
 
 usage()
 {
+    
      echo "AWS identity switch"
-     echo "usage: aws-id <account>"
      echo ""
+     echo "usage: source aws-id <account>"
      echo "usage: aws-id -add <account>"
      echo ""
-     echo "<account> is a directory in $AWS_DIR containing EC2 certs and an AWS credentials file."
+     echo "<account> is a directory in $AWS_DIR/"
 	 echo ""
 }
 
@@ -52,7 +53,7 @@ else
 
     if [ -f $AWS_DIR/$1 ]
     then
-        source export AWS_CONFIG_FILE${SEPARATOR}"${AWS_DIR}/$1"
+        export "AWS_CONFIG_FILE${SEPARATOR}${AWS_DIR}/$1" &&
         echo "Switched EC2 and AWS identity to $1"
     fi
 fi
