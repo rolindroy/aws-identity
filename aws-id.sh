@@ -4,12 +4,12 @@ set -e
 AWS_DIR=~/.aws/aws-identities
 ACCESS_FILE_NAME="aws-credentials"
 
-hash grep 2>/dev/null || { echo >&2 "aws-identity requires grep, but it doesn't seem to be available.  Aborting."; exit 1; }
-
 usage()
 {
      echo "AWS identity switch"
      echo "usage: aws-id <account>"
+     echo ""
+     echo "usage: aws-id -add <account>"
      echo ""
      echo "<account> is a directory in $AWS_DIR containing EC2 certs and an AWS credentials file."
 	 echo ""
