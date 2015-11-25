@@ -29,12 +29,30 @@ then
     return 0
 fi
 
-COMMAND="export"
-UNSET="unset"
-SEPARATOR="="
+if [ $1 == "-add" ]; then
+    if [ ! -z $2 ]; then 
+    
+        printf "aws_access_key_id[ eg: WISAJMZ7DFCHAJMZ7DFCH] : "
+        read -r accessKey
+        printf "aws_secret_access_key[ eg: 09fdf5Ajffsfsdf3EsFsdfsdm6pfsdfs7yWT73Hz] : "
+        read -r secretKey
+        printf "region[ eg: us-east-1] : "
+        read -r region
+        keyfile=$AWS_DIR/$2
+        touch $keyfile
+        echo "[default]" >> $keyfile
+        echo "aws_access_key_id = "$accessKey >> $keyfile
+        echo "aws_secret_access_key = "$secretKey >> $keyfile
+        echo "region = "$accessKey >> $region
+    fi
+else
+    COMMAND="export"
+    UNSET="unset"
+    SEPARATOR="="
 
-if [ -f $AWS_DIR/$1 ]
-then
-    source export AWS_CONFIG_FILE${SEPARATOR}"${AWS_DIR}/$1"
-    echo "Switched EC2 and AWS identity to $1"
+    if [ -f $AWS_DIR/$1 ]
+    then
+        source export AWS_CONFIG_FILE${SEPARATOR}"${AWS_DIR}/$1"
+        echo "Switched EC2 and AWS identity to $1"
+    fi
 fi
